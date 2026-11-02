@@ -1,0 +1,111 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Install Node Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Sync Capacitor Android
+        run: npx cap sync android
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./android/gradlew
+
+      - name: Build Debug APK & Prepare Asset
+        env:
+          ANDROID_HOME: /usr/local/lib/android/sdk
+        run: |
+          cd android
+          ./gradlew :app:assembleDebug --stacktrace 2>&1 | tee ../gradle-build.log
+          cd ..
+          mkdir -p dist-apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk dist-apk/chicken-ghost.apk
+          mkdir -p public/downloads
+          cp dist-apk/chicken-ghost.apk public/downloads/chicken-ghost.apk
+          ls -lh dist-apk/chicken-ghost.apk
+
+      - name: Push Error Log on Failure
+        if: failure()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git checkout -B build-log
+          tail -n 300 gradle-build.log > gradle-error.txt || true
+          git add gradle-error.txt
+          git commit -m "chore: upload gradle error log" || true
+          git push origin build-log -f || true
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chicken-ghost-apk
+          path: dist-apk/chicken-ghost.apk
+          if-no-files-found: error
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          tag_name: v1.0.0
+          name: "تشيكن جوست - تطبيق الأندرويد الرسمي v1.0.0"
+          draft: false
+          prerelease: false
+          make_latest: true
+          body: |
+            ## 🍗 تطبيق مطعم تشيكن جوست (Chicken Ghost) الرسمي للأندرويد v1.0.0
+            
+            أهلاً بكم في تطبيق **تشيكن جوست (Chicken Ghost)** الرسمي للأندرويد - فرع حدائق القبة الرئيسي (74 شارع الدويدار)!
+            
+            ### 🔥 مميزات التطبيق:
+            - تجربة طلب تيك أواي، دليفري، وصالة سريعة ومباشرة لحدائق القبة والوايلي وكافة المناطق المجاورة.
+            - متابعة لحظية لخط سير الطيار وحالة الأوردر خطوة بخطوة.
+            - منيو الفرايد تشيكن والبروجر كامل: ساندوتش جوست العملاق (Monster Burger)، بايتس وديناميت فرايز، وبوكسات الشبح العائلية المقرمشة.
+            - عروض الشبح الحصرية مع أحدث العروض والخصومات.
+            - شات مباشر مع المطعم لخدمة عملاء فائقة السرعة.
+            
+            ### 📥 طريقة التثبيت:
+            1. اضغط على رابط التحميل المباشر بالأسفل `chicken-ghost.apk`.
+            2. افتح الملف واضغط **تثبيت (Install)**.
+            3. التطبيق مستقل تماماً ومخصص لمطعم تشيكن جوست (`com.chickenghost.app`).
+          files: dist-apk/chicken-ghost.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and Push APK to Repo
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/downloads/chicken-ghost.apk
+          git commit -m "chore(release): host genuine compiled Chicken Ghost APK [skip ci]" || echo "No changes"
+          git push origin main || true

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">تشيكن جوست</string>
+    <string name="title_activity_main">تشيكن جوست</string>
+    <string name="package_name">com.chickenghost.app</string>
+    <string name="custom_url_scheme">com.chickenghost.app</string>
+</resources>
