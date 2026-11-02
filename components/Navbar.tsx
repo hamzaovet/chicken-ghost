@@ -98,7 +98,7 @@ export default function Navbar() {
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <MapPin size={14} color="#ff6b00" />
             <span>
-              فروع تشيكن جوست: الفرع الرئيسي 74 شارع الدويدار (حدائق القبة) • الوايلي • الزيتون • مدينة نصر
+              مطعم تشيكن جوست: 74 شارع الدويدار - حدائق القبة - القاهرة • أقوى فرايد تشيكن وبرجر
             </span>
           </div>
 

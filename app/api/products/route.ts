@@ -29,7 +29,8 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const product = await prisma.product.create({ data: body });
+    const { category, ...data } = body;
+    const product = await prisma.product.create({ data });
     cachedProducts = null;
     return NextResponse.json(product, { status: 201 });
   } catch (err: unknown) {

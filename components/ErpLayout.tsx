@@ -142,7 +142,7 @@ export default function ErpLayout({ children, activeItem }: ErpLayoutProps) {
                 border: "1.5px solid #f59e0b",
                 fontSize: "22px",
               }}>
-                🐟
+                🍗
               </div>
               <div>
                 <div style={{
@@ -275,7 +275,7 @@ export default function ErpLayout({ children, activeItem }: ErpLayoutProps) {
                 {currentUser.name}
               </div>
               <div style={{ fontSize: "10.5px", color: "#f59e0b", marginTop: "2px", fontWeight: 700 }}>
-                {currentUser.branch || "فرع فيصل الرئيسي"}
+                {currentUser.branch || "فرع حدائق القبة (74 شارع الدويدار)"}
               </div>
             </div>
           )}

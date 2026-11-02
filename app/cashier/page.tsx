@@ -418,7 +418,8 @@ export default function CashierPage() {
               overflowY: "auto",
               padding: "20px",
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+              gridAutoRows: "minmax(280px, auto)",
               gap: "16px",
               alignContent: "start",
             }}>
@@ -449,16 +450,17 @@ export default function CashierPage() {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
-                        transition: "transform 0.15s, border-color 0.15s",
-                        boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+                        minHeight: "280px",
+                        height: "100%",
+                        boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
                       }}
                     >
                       {/* Image / Header */}
-                      <div style={{ position: "relative", height: "120px", backgroundColor: "#071524" }}>
+                      <div style={{ position: "relative", height: "135px", minHeight: "135px", maxHeight: "135px", flexShrink: 0, backgroundColor: "#071524", overflow: "hidden" }}>
                         <img
-                          src={p.image || "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80"}
+                          src={p.image || "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&auto=format&fit=crop&q=80"}
                           alt={p.nameAr}
-                          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                         />
                         {p.scaleItemCode && (
                           <span style={{

@@ -5,7 +5,8 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   try {
     const { id } = await params;
     const body = await req.json();
-    const product = await prisma.product.update({ where: { id }, data: body });
+    const { category, ...data } = body;
+    const product = await prisma.product.update({ where: { id }, data });
     return NextResponse.json(product);
   } catch (err: unknown) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

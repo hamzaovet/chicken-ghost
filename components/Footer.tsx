@@ -189,27 +189,21 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 4: Branches & Coverage */}
+        {/* Column 4: Branch & Delivery Coverage */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           <h4 style={{ fontSize: "16px", fontWeight: 900, color: "#ff6b00", marginBottom: "4px" }}>
-            فروعنا ونطاق التغطية بالقاهرة
+            عنوان المطعم ومناطق التوصيل
           </h4>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
             <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
             <span>
-              <strong style={{ color: "#f8fafc" }}>الفرع الرئيسي (حدائق القبة):</strong> 74 شارع الدويدار، حدائق القبة.
+              <strong style={{ color: "#f8fafc" }}>فرع المطعم:</strong> 74 شارع الدويدار، حدائق القبة، القاهرة.
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
-            <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
+            <MapPin size={18} color="#10b981" style={{ flexShrink: 0, marginTop: "2px" }} />
             <span>
-              <strong style={{ color: "#f8fafc" }}>فرع الوايلي والعباسية:</strong> شارع العباسية الرئيسي تقاطع أحمد سعيد.
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
-            <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
-            <span>
-              <strong style={{ color: "#f8fafc" }}>فروع أخرى:</strong> الزيتون (ميدان ابن سندر) • سراي القبة • مدينة نصر ومصر الجديدة.
+              <strong style={{ color: "#f8fafc" }}>نطاق توصيل الدليفري:</strong> حدائق القبة والدويدار • الوايلي والعباسية • الزيتون وسراي القبة • مصر الجديدة • مدينة نصر.
             </span>
           </div>
         </div>

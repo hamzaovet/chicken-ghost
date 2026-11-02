@@ -388,32 +388,26 @@ export default function StorefrontPage() {
             fontSize: "13px",
           }}
         >
-          {/* Branch Picker */}
+          {/* Official Single Branch Info */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: "1 1 280px", minWidth: 0 }}>
             <MapPin size={16} color="#ff6b00" style={{ flexShrink: 0 }} />
-            <span style={{ color: "#94a3b8", whiteSpace: "nowrap", flexShrink: 0 }}>الفرع الأقرب لك:</span>
-            <select
-              value={selectedBranch}
-              onChange={e => setSelectedBranch(e.target.value)}
+            <span style={{ color: "#94a3b8", whiteSpace: "nowrap", flexShrink: 0 }}>فرع المطعم:</span>
+            <div
               style={{
                 backgroundColor: "#0b0914",
                 border: "1px solid #211a3d",
                 borderRadius: "8px",
                 color: "#ff6b00",
-                padding: "6px 10px",
-                fontWeight: 800,
-                fontSize: "12px",
-                outline: "none",
-                cursor: "pointer",
-                flex: 1,
-                minWidth: 0,
+                padding: "6px 12px",
+                fontWeight: 900,
+                fontSize: "12.5px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
               }}
             >
-              <option value="فرع حدائق القبة الرئيسي (74 شارع الدويدار)">فرع حدائق القبة الرئيسي (74 شارع الدويدار)</option>
-              <option value="فرع الوايلي والعباسية">فرع الوايلي والعباسية</option>
-              <option value="فرع الزيتون وسراي القبة">فرع الزيتون وسراي القبة</option>
-              <option value="فرع مدينة نصر ومصر الجديدة">فرع مدينة نصر ومصر الجديدة</option>
-            </select>
+              <span>فرع حدائق القبة (74 شارع الدويدار)</span>
+            </div>
           </div>
 
           {/* Delivery Zone / Speed estimate */}
