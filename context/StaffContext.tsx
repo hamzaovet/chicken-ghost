@@ -19,7 +19,13 @@ interface StaffContextType {
   users: StaffUser[];
   setCurrentUser: (user: StaffUser | null) => void;
   switchUserByName: (name: string) => void;
-  login: (identifier: string, secret: string, mode?: "phone" | "username", pin?: string) => Promise<{ success: boolean; error?: string; requirePin?: boolean; user?: StaffUser }>;
+  login: (
+    identifier: string,
+    secret?: string,
+    mode?: "phone" | "username",
+    pin?: string,
+    password?: string
+  ) => Promise<{ success: boolean; error?: string; requirePin?: boolean; user?: StaffUser }>;
   logout: () => void;
   isAuthenticated: boolean;
   permissions: RolePermissions;
@@ -97,11 +103,24 @@ export function StaffProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const login = async (identifier: string, secret: string, mode: "phone" | "username" = "username", pin?: string): Promise<{ success: boolean; error?: string; requirePin?: boolean; user?: StaffUser }> => {
+  const login = async (
+    identifier: string,
+    secret?: string,
+    mode?: "phone" | "username",
+    pin?: string,
+    password?: string
+  ): Promise<{ success: boolean; error?: string; requirePin?: boolean; user?: StaffUser }> => {
     try {
-      const body = mode === "username"
-        ? { username: identifier, password: secret, pin }
-        : { phone: identifier, pin: secret };
+      const finalPassword = password || (mode === "username" ? secret : undefined);
+      const finalPin = pin || (mode === "phone" ? secret : undefined);
+
+      const body: any = {
+        identifier: identifier.trim(),
+        username: identifier.trim(),
+        phone: identifier.trim(),
+      };
+      if (finalPassword) body.password = finalPassword;
+      if (finalPin) body.pin = finalPin;
 
       const res = await fetch("/api/auth/login", {
         method: "POST",

@@ -152,10 +152,10 @@ export function printThermalReceipt(order: PrintableOrder) {
     </head>
     <body onload="window.print(); setTimeout(() => window.close(), 500);">
       <div class="text-center">
-        <div style="font-size: 26px; margin-bottom: 4px;">🐟 👑</div>
+        <div style="font-size: 26px; margin-bottom: 4px;">🍗 👻</div>
         <div style="font-size: 18px; font-weight: 900; letter-spacing: 0.5px;">تشيكن جوست - Chicken Ghost 👻</div>
-        <div style="font-size: 11px; font-weight: 700; color: #333;">ملوك الأسماك المملحة والمدخنة والبطارخ منذ 1990</div>
-        <div style="font-size: 11px; color: #222; margin-top: 2px;">${order.branch || "فرع فيصل الرئيسي (المطبعة)"}</div>
+        <div style="font-size: 11px; font-weight: 700; color: #333;">شبح الفرايد تشيكن والبرجر المقرمش • أقوى قرمشة في مصر</div>
+        <div style="font-size: 11px; color: #222; margin-top: 2px;">${order.branch || "فرع حدائق القبة الرئيسي (74 شارع الدويدار)"}</div>
         <div style="font-size: 12px; font-weight: bold; margin-top: 2px;">الخط الساخن: 01010568615 | واتساب: 01010568615</div>
       </div>
 
@@ -262,7 +262,7 @@ export function printThermalReceipt(order: PrintableOrder) {
 
       <div class="footer-note">
         <div style="font-weight: bold; font-size: 12px;">ألف هنا وشفا يا فندم! 🐟</div>
-        <div>نوصي بحفظ الأسماك في الفريزر أو استهلاكها فوراً بعد الفتح</div>
+        <div>ألف هنا وشفا • تشيكن جوست يتمنى لكم وجبة مقرمشة شهية!</div>
         <div style="margin-top: 4px; font-size: 10px; color: #555;">شكراً لاختياركم تشيكن جوست - Chicken Ghost 👻</div>
         <div style="font-size: 9px; margin-top: 3px; color: #777;">تم إصدار الفاتورة إلكترونياً بواسطة نظام شركة أوركا السحابي</div>
       </div>

@@ -46,7 +46,7 @@ async function main() {
       name: "المعلم المايسترو (المالك)",
       username: "maestro",
       phone: "01010568615",
-      pin: "112233",
+      pin: "157230",
       role: "owner",
       branch: "فرع حدائق القبة الرئيسي",
       department: "الإدارة العليا",
@@ -277,7 +277,7 @@ async function main() {
       weightUnit: "بوكس عائلي 15 قطعة",
       packageType: "ميجا بوكس الحفلات",
       description: "15 قطعة فرايد تشيكن مقرمش ذهبي + بطاطس فاميلي + لتر بيبسي + كول سلو لارج + 6 خبز + صوصات",
-      image: "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&auto=format&fit=crop&q=80",
       sortOrder: 3,
     },
     {
@@ -306,7 +306,7 @@ async function main() {
       weightUnit: "وجبة فردية",
       packageType: "وجبة مقرمشة",
       description: "3 قطع فراخ مقرمشة خلطة سرية + بطاطس محمرة + كول سلو فريش + خبز ساخن",
-      image: "https://images.unsplash.com/photo-1527477321005-4d01314b433b?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&auto=format&fit=crop&q=80",
       sortOrder: 5,
     },
     {
@@ -342,7 +342,7 @@ async function main() {
       weightUnit: "سطل 9 قطع",
       packageType: "سطل الشبح",
       description: "9 قطع فراخ مقلية ذهبية مقرمشة + بطاطس فاميلي + 3 كول سلو + 4 خبز + صوصين",
-      image: "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&auto=format&fit=crop&q=80",
       sortOrder: 8,
     },
 

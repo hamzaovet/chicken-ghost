@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, MapPin, Clock, ShieldCheck, Heart, Sparkles, Smartphone } from "lucide-react";
+import { Phone, MapPin, Clock, Smartphone } from "lucide-react";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -31,7 +31,7 @@ export default function Footer() {
           width: "100%",
           padding: "16px 20px",
           backgroundColor: "#0b0914",
-          borderTop: "1px solid rgba(245, 158, 11, 0.2)",
+          borderTop: "1px solid rgba(255, 107, 0, 0.2)",
           textAlign: "center",
           fontSize: "12px",
           color: "#94a3b8",
@@ -40,13 +40,13 @@ export default function Footer() {
       >
         <span>© {new Date().getFullYear()} تشيكن جوست (Chicken Ghost) • </span>
         <span style={{ color: "#ff6b00", fontWeight: 800 }}>
-          تم تطوير النظام بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية
+          تم تطوير المنظومة بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية 🐬
         </span>
       </footer>
     );
   }
 
-  // PUBLIC STOREFRONT FOOTER (Pharaonic Oceanic Navy & Smoked Gold Theme)
+  // PUBLIC STOREFRONT FOOTER (Chicken Ghost Midnight & Spicy Orange Theme)
   return (
     <footer
       style={{
@@ -82,20 +82,23 @@ export default function Footer() {
                 height: "56px",
                 borderRadius: "16px",
                 border: "2px solid #ff6b00",
-                background: "linear-gradient(135deg, #130f24 0%, #211a3d 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "28px",
+                overflow: "hidden",
+                backgroundColor: "#130f24",
+                boxShadow: "0 0 15px rgba(255, 107, 0, 0.3)",
+                flexShrink: 0,
               }}
             >
-              👻
+              <img
+                src="/logo.png"
+                alt="Chicken Ghost"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
             <div>
               <h3 style={{ fontSize: "22px", fontWeight: 900, color: "#ff6b00", margin: 0 }}>
                 تشيكن جوست - Chicken Ghost
               </h3>
-              <p style={{ fontSize: "11px", color: "#94a3b8", margin: 0, fontWeight: 800 }}>
+              <p style={{ fontSize: "11px", color: "#00f2fe", margin: 0, fontWeight: 800 }}>
                 CHICKEN GHOST • شبح الفرايد تشيكن والبرجر المقرمش • أقوى قرمشة في مصر
               </p>
             </div>
@@ -111,13 +114,13 @@ export default function Footer() {
                 alignItems: "center",
                 gap: "7px",
                 backgroundColor: "#ff6b00",
-                color: "#0b0914",
+                color: "#ffffff",
                 textDecoration: "none",
                 fontSize: "12px",
                 fontWeight: 900,
                 padding: "8px 16px",
                 borderRadius: "100px",
-                boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
+                boxShadow: "0 4px 12px rgba(255, 107, 0, 0.3)",
               }}
             >
               <Smartphone size={14} />
@@ -129,19 +132,22 @@ export default function Footer() {
         {/* Column 2: Quick Links */}
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           <h4 style={{ fontSize: "16px", fontWeight: 900, color: "#ff6b00", marginBottom: "8px" }}>
-            أقسام وقائمة الأسماك
+            قائمة وأقسام تشيكن جوست
           </h4>
           <Link href="/#menu-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
-            👻 فسيخ الملوك بوري بلدي سوبر جامبو
+            👻 عروض وبوكسات الشبح الأسطورية
           </Link>
           <Link href="/#menu-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
-            👑 رنجة هولندي سوبر لوكس وبطارخ خرز
+            🍗 قطع الفرايد تشيكن المقرمشة
           </Link>
           <Link href="/#menu-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
-            🥇 بطارخ بوري بورسعيدي مجففة شمع
+            🍔 سندوتشات وبرجر الشبح العملاق
           </Link>
-          <Link href="/#offers-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
-            🎁 بوكسات العزومات والميكسات الملكية
+          <Link href="/#menu-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
+            🥢 ستربس وبايتس دجاج مقرمش ناري
+          </Link>
+          <Link href="/#menu-section" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
+            🍟 ديناميت لودد فرايز ومقبلات
           </Link>
           <Link href="/track" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", fontWeight: 700 }}>
             🛵 تتبع خط سير الطيار والأوردر لحظياً
@@ -159,50 +165,51 @@ export default function Footer() {
           <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#cbd5e1", fontSize: "13.5px" }}>
             <Phone size={16} color="#ff6b00" />
             <a href="tel:01010568615" style={{ color: "#f8fafc", textDecoration: "none", fontWeight: 800, direction: "ltr" }}>
-              0100 038 8911
+              0101 056 8615
             </a>
-            <span style={{ color: "#10b981", fontSize: "12px", fontWeight: 700 }}>(الخط الرئيسي الساخن)</span>
+            <span style={{ color: "#10b981", fontSize: "12px", fontWeight: 700 }}>(الخط الساخن للطلبات)</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#cbd5e1", fontSize: "13.5px" }}>
             <Phone size={16} color="#10b981" />
             <a href="https://wa.me/201010568615" target="_blank" rel="noopener noreferrer" style={{ color: "#f8fafc", textDecoration: "none", fontWeight: 800, direction: "ltr" }}>
-              0106 971 7413
+              0101 056 8615
             </a>
-            <span style={{ color: "#94a3b8", fontSize: "12px" }}>(واتساب وحجز البوكسات)</span>
+            <span style={{ color: "#94a3b8", fontSize: "12px" }}>(واتساب الدليفري والحجز)</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#cbd5e1", fontSize: "13.5px" }}>
-            <Phone size={16} color="#ff6b00" />
-            <a href="tel:01110022334" style={{ color: "#f8fafc", textDecoration: "none", fontWeight: 800, direction: "ltr" }}>
-              0111 002 2334
+            <Phone size={16} color="#00f2fe" />
+            <a href="tel:01010568616" style={{ color: "#f8fafc", textDecoration: "none", fontWeight: 800, direction: "ltr" }}>
+              0101 056 8616
             </a>
+            <span style={{ color: "#94a3b8", fontSize: "12px" }}>(إدارة الفرع والشكاوى)</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#94a3b8", fontSize: "12.5px", marginTop: "4px" }}>
             <Clock size={15} color="#ff6b00" />
-            <span>نعمل يومياً من الساعة 10:00 صباحاً وحتى 2:00 بعد منتصف الليل</span>
+            <span>نعمل يومياً من الساعة 11:00 صباحاً وحتى 3:00 بعد منتصف الليل</span>
           </div>
         </div>
 
         {/* Column 4: Branches & Coverage */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           <h4 style={{ fontSize: "16px", fontWeight: 900, color: "#ff6b00", marginBottom: "4px" }}>
-            فروعنا وتغطية القاهرة والجيزة
+            فروعنا ونطاق التغطية بالقاهرة
           </h4>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
             <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
             <span>
-              <strong style={{ color: "#f8fafc" }}>فرع فيصل (المطبعة):</strong> شارع عمرو بن العاص، متفرع من فيصل، برج البدر.
+              <strong style={{ color: "#f8fafc" }}>الفرع الرئيسي (حدائق القبة):</strong> 74 شارع الدويدار، حدائق القبة.
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
             <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
             <span>
-              <strong style={{ color: "#f8fafc" }}>فرع ألف مسكن (جسر السويس):</strong> 2 شارع أحمد عصمت أمام نادي الشمس بوابة 4.
+              <strong style={{ color: "#f8fafc" }}>فرع الوايلي والعباسية:</strong> شارع العباسية الرئيسي تقاطع أحمد سعيد.
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "flex-start", gap: "10px", color: "#94a3b8", fontSize: "12.5px", lineHeight: 1.5 }}>
             <MapPin size={18} color="#ff6b00" style={{ flexShrink: 0, marginTop: "2px" }} />
             <span>
-              <strong style={{ color: "#f8fafc" }}>فروع أخرى:</strong> 6 أكتوبر (ميدان الحصري) • حدائق القبة (مصر والسودان) • زهراء المعادي (شارع الخمسين).
+              <strong style={{ color: "#f8fafc" }}>فروع أخرى:</strong> الزيتون (ميدان ابن سندر) • سراي القبة • مدينة نصر ومصر الجديدة.
             </span>
           </div>
         </div>
@@ -214,7 +221,7 @@ export default function Footer() {
           maxWidth: "1320px",
           margin: "36px auto 0",
           padding: "20px 24px 0",
-          borderTop: "1px solid rgba(245, 158, 11, 0.15)",
+          borderTop: "1px solid rgba(255, 107, 0, 0.2)",
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-between",
@@ -237,7 +244,7 @@ export default function Footer() {
               gap: "6px",
             }}
           >
-            تم تطوير النظام بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية 🐬
+            تم تطوير وبرمجة المنظومة بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية 🐬
           </span>
         </div>
       </div>

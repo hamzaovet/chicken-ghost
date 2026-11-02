@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* El-Fra3na (فسيخ ورنجة الفراعنة) Pharaonic Gold & Oceanic Obsidian Theme */
+/* Chicken Ghost (تشيكن جوست) Midnight & Spicy Orange Theme */
 :root {
   --ph-navy-deep: #071524;
   --ph-navy-card: #0d2137;
@@ -115,5 +115,37 @@ html, body {
   @page {
     size: 80mm auto;
     margin: 0;
+  }
+}
+
+
+/* Responsive Nav & Utility Helpers */
+@media (max-width: 880px) {
+  .nav-desktop-only {
+    display: none !important;
+  }
+  .nav-mobile-only {
+    display: flex !important;
+  }
+  .brand-title-full {
+    display: none !important;
+  }
+  .brand-title-compact {
+    display: block !important;
+  }
+}
+
+@media (min-width: 881px) {
+  .nav-desktop-only {
+    display: flex !important;
+  }
+  .nav-mobile-only {
+    display: none !important;
+  }
+  .brand-title-full {
+    display: block !important;
+  }
+  .brand-title-compact {
+    display: none !important;
   }
 }

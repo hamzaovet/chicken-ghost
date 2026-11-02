@@ -52,7 +52,7 @@ model Product {
   nameEn         String
   categoryId     String?
   category       Category? @relation(fields: [categoryId], references: [id])
-  categoryName   String?   @default("فسيخ ورنجة")
+  categoryName   String?   @default("فرايد تشيكن وبرجر")
   basePrice      Float
   originalPrice  Float?    // السعر الأصلي المشطوب (e.g. 480 EGP)
   promoPrice     Float?    // سعر العرض (e.g. 420 EGP)
@@ -134,8 +134,8 @@ model Expense {
   description String
   amount      Float
   expenseDate String   // YYYY-MM-DD
-  category    String   @default("تشغيل") // خامات، أسماك، تشغيل، مرتبات، إيجار، نظافة
-  branch      String   @default("فرع فيصل الرئيسي")
+  category    String   @default("تشغيل") // خامات، دواجن، تشغيل، مرتبات، إيجار، نظافة
+  branch      String   @default("فرع حدائق القبة الرئيسي")
   recordedBy  String?
   createdAt   DateTime @default(now())
 }
@@ -149,7 +149,7 @@ model TreasuryTransaction {
   description     String
   reference       String?
   paymentMethod   String   @default("cash")
-  branch          String   @default("فرع فيصل الرئيسي")
+  branch          String   @default("فرع حدائق القبة الرئيسي")
   createdBy       String   @default("system")
   createdAt       DateTime @default(now())
 }
@@ -168,15 +168,15 @@ model ChatMessage {
 
 model SystemSettings {
   id                    String   @id @default("default")
-  restaurantName        String   @default("فسيخ ورنجة الفراعنة")
-  phone                 String   @default("01000388911")
-  hotlines              String   @default("01000388911 | 01069717413 | 01110022334")
-  address               String   @default("الفروع: فيصل، ألف مسكن، 6 أكتوبر، حدائق القبة، زهراء المعادي")
-  whatsappNumber        String   @default("01069717413")
+  restaurantName        String   @default("تشيكن جوست - Chicken Ghost")
+  phone                 String   @default("01010568615")
+  hotlines              String   @default("01010568615 | 01010568616")
+  address               String   @default("74 شارع الدويدار - حدائق القبة - القاهرة")
+  whatsappNumber        String   @default("01010568615")
   deliveryZones         String   @default("[]") // JSON: [{name, fee}]
-  openingCashBalance    Float    @default(0.0)
-  receiptHeader         String   @default("فسيخ ورنجة الفراعنة - ملوك الأسماك المملحة والمدخنة")
-  receiptFooter         String   @default("ألف هنا وشفا - شكراً لزيارتكم فسيخ ورنجة الفراعنة • دليفري 01000388911")
+  openingCashBalance    Float    @default(15000.0)
+  receiptHeader         String   @default("تشيكن جوست 👻 Chicken Ghost • شبح الفرايد تشيكن والبرجر")
+  receiptFooter         String   @default("ألف هنا وشفا 👻 شكراً لاختياركم تشيكن جوست • دليفري 01010568615")
   receiptWidth          String   @default("80mm")
   autoPrintReceipt      Boolean  @default(true)
   soundsEnabled         Boolean  @default(true)

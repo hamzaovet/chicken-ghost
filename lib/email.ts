@@ -43,8 +43,8 @@ export async function sendOtpEmail(to: string, name: string, code: string): Prom
       </head>
       <body>
         <div class="container">
-          <div class="logo">🐟 تشيكن جوست - Chicken Ghost</div>
-          <div class="sub">ملوك الأسماك المملحة والمدخنة والبطارخ منذ 1990</div>
+          <div class="logo">🍗 تشيكن جوست - Chicken Ghost 👻</div>
+          <div class="sub">شبح الفرايد تشيكن والبرجر المقرمش • أقوى قرمشة في مصر</div>
           
           <h2 style="color: #f8fafc; font-size: 20px; margin: 0 0 10px 0;">أهلاً بك يا ${name || "عميلنا العزيز"} 👋</h2>
           <p class="info">استخدم كود التحقق السري التالي لتأكيد تسجيل حسابك في التطبيق:</p>

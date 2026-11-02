@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStaff } from "@/context/StaffContext";
 import { playSound } from "@/lib/sounds";
-import { Shield, Lock, User, Phone, KeyRound, Loader2, ArrowRight } from "lucide-react";
+import { ShieldCheck, Lock, User, KeyRound, Loader2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
   const { login } = useStaff();
-  const [phoneOrUser, setPhoneOrUser] = useState("");
+  const [usernameOrPhone, setUsernameOrPhone] = useState("");
+  const [password, setPassword] = useState("");
   const [pin, setPin] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -18,15 +20,25 @@ export default function LoginPage() {
   function getRouteForRole(role?: string) {
     if (role === "owner" || role === "manager") return "/dashboard";
     if (role === "delivery") return "/track";
+    if (role === "kitchen") return "/kitchen";
     return "/cashier";
   }
 
-  async function handleLogin(targetPhone?: string, targetPin?: string) {
-    const finalPhone = targetPhone || phoneOrUser.trim();
-    const finalPin = targetPin || pin.trim();
+  async function handleLogin(
+    targetUser?: string,
+    targetPass?: string,
+    targetPin?: string
+  ) {
+    const finalUser = (targetUser ?? usernameOrPhone).trim();
+    const finalPass = (targetPass ?? password).trim();
+    const finalPin = (targetPin ?? pin).trim();
 
-    if (!finalPhone) {
-      setError("يرجى إدخال رقم الهاتف أو اسم المستخدم");
+    if (!finalUser) {
+      setError("يرجى إدخال اسم المستخدم أو رقم الهاتف");
+      return;
+    }
+    if (!finalPass && !finalPin) {
+      setError("يرجى إدخال كلمة المرور أو كود الأمان PIN");
       return;
     }
 
@@ -34,13 +46,13 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await login(finalPhone, finalPin, "phone", finalPin);
+      const res = await login(finalUser, finalPass || finalPin, "username", finalPin, finalPass);
       if (res.success && res.user) {
         playSound("success");
         router.push(getRouteForRole(res.user.role));
       } else {
         playSound("alert");
-        setError(res.error || "بيانات الدخول غير صحيحة، يرجى التأكد من الرقم وكود PIN");
+        setError(res.error || "بيانات الدخول غير صحيحة، يرجى التأكد من اليوزر والباسوورد وكود PIN");
       }
     } catch (err: any) {
       setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
@@ -49,12 +61,50 @@ export default function LoginPage() {
     }
   }
 
+  const staffPresets = [
+    {
+      label: "👑 المعلم المايسترو (المالك)",
+      user: "maestro",
+      pass: "123456789",
+      pin: "157230",
+      color: "#ff6b00",
+    },
+    {
+      label: "👔 مدير المطعم والتشغيل",
+      user: "manager",
+      pass: "123456789",
+      pin: "445566",
+      color: "#00f2fe",
+    },
+    {
+      label: "💻 كاشير صالة الشبح (POS)",
+      user: "cashier1",
+      pass: "123456789",
+      pin: "123456",
+      color: "#10b981",
+    },
+    {
+      label: "🍳 شيف المطبخ والتجهيز",
+      user: "kitchen1",
+      pass: "123456789",
+      pin: "998877",
+      color: "#a855f7",
+    },
+    {
+      label: "🛵 كابتن دليفري الشبح",
+      user: "delivery1",
+      pass: "123456789",
+      pin: "554433",
+      color: "#f59e0b",
+    },
+  ];
+
   return (
     <div
       dir="rtl"
       style={{
         minHeight: "100vh",
-        background: "radial-gradient(ellipse at top, #0d2137 0%, #071524 60%, #030a12 100%)",
+        background: "radial-gradient(ellipse at top, #1a1433 0%, #0b0914 60%, #05040a 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -62,6 +112,7 @@ export default function LoginPage() {
         padding: "24px 16px",
         fontFamily: "var(--font-cairo), sans-serif",
         color: "#f8fafc",
+        position: "relative",
       }}
     >
       {/* Return to Storefront */}
@@ -78,6 +129,10 @@ export default function LoginPage() {
           textDecoration: "none",
           fontSize: "13px",
           fontWeight: 800,
+          backgroundColor: "#130f24",
+          border: "1px solid #211a3d",
+          padding: "6px 14px",
+          borderRadius: "100px",
         }}
       >
         <span>العودة للمتجر</span>
@@ -85,37 +140,39 @@ export default function LoginPage() {
       </Link>
 
       {/* Brand Header */}
-      <div style={{ textAlign: "center", marginBottom: "24px" }}>
+      <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <div
           style={{
             width: "80px",
             height: "80px",
-            margin: "0 auto 14px",
-            borderRadius: "20px",
-            background: "linear-gradient(135deg, #0d2137 0%, #1a3654 100%)",
-            border: "2px solid #f59e0b",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "38px",
-            boxShadow: "0 0 25px rgba(245, 158, 11, 0.3)",
+            margin: "0 auto 12px",
+            borderRadius: "22px",
+            border: "2px solid #ff6b00",
+            overflow: "hidden",
+            boxShadow: "0 0 25px rgba(255, 107, 0, 0.3)",
+            position: "relative",
+            backgroundColor: "#0b0914",
           }}
         >
-          🐟
+          <img
+            src="/logo.png"
+            alt="Chicken Ghost"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
         </div>
         <h1
           style={{
-            fontSize: "26px",
+            fontSize: "24px",
             fontWeight: 900,
-            color: "#f59e0b",
-            margin: "0 0 6px",
+            color: "#ff6b00",
+            margin: "0 0 4px",
             letterSpacing: "0.5px",
           }}
         >
-          تشيكن جوست - Chicken Ghost
+          تشيكن جوست — Chicken Ghost
         </h1>
-        <p style={{ fontSize: "13.5px", color: "#94a3b8", margin: 0, fontWeight: 700 }}>
-          بوابة دخول الكاشير (POS) والإدارة والتشغيل السحابي
+        <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0, fontWeight: 700 }}>
+          بوابة تسجيل الدخول: المالك • الإدارة • الكاشير POS • المطبخ • الدليفري
         </p>
       </div>
 
@@ -123,18 +180,18 @@ export default function LoginPage() {
       <div
         style={{
           width: "100%",
-          maxWidth: "420px",
-          backgroundColor: "#0d2137",
-          border: "1.5px solid #1a3654",
+          maxWidth: "430px",
+          backgroundColor: "#130f24",
+          border: "1.5px solid #ff6b00",
           borderRadius: "24px",
-          padding: "32px",
-          boxShadow: "0 20px 50px rgba(0, 0, 0, 0.5)",
+          padding: "28px 24px",
+          boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6)",
           boxSizing: "border-box",
         }}
       >
         <h2
           style={{
-            fontSize: "18px",
+            fontSize: "17px",
             fontWeight: 900,
             color: "#f8fafc",
             margin: "0 0 4px",
@@ -145,13 +202,13 @@ export default function LoginPage() {
         </h2>
         <p
           style={{
-            fontSize: "12.5px",
+            fontSize: "12px",
             color: "#94a3b8",
-            margin: "0 0 20px",
+            margin: "0 0 18px",
             textAlign: "center",
           }}
         >
-          أدخل رقم الهاتف وكود الحماية PIN الخاص بحسابك
+          أدخل اسم المستخدم أو الهاتف، كلمة المرور، وكود الأمان (PIN)
         </p>
 
         <form
@@ -159,37 +216,75 @@ export default function LoginPage() {
             e.preventDefault();
             handleLogin();
           }}
-          style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          style={{ display: "flex", flexDirection: "column", gap: "14px" }}
         >
-          {/* Phone */}
+          {/* Username / Phone */}
           <div>
             <label
               style={{
                 display: "block",
-                fontSize: "12.5px",
+                fontSize: "12px",
                 fontWeight: 800,
                 color: "#cbd5e1",
-                marginBottom: "6px",
+                marginBottom: "5px",
               }}
             >
-              رقم الهاتف أو اسم المستخدم
+              اسم المستخدم أو رقم الهاتف
             </label>
             <div style={{ position: "relative" }}>
-              <Phone size={16} style={{ position: "absolute", right: "14px", top: "14px", color: "#94a3b8" }} />
+              <User size={16} style={{ position: "absolute", right: "12px", top: "13px", color: "#94a3b8" }} />
               <input
                 type="text"
-                value={phoneOrUser}
-                onChange={(e) => setPhoneOrUser(e.target.value)}
-                placeholder="01069717413 أو 01000388911"
+                value={usernameOrPhone}
+                onChange={(e) => setUsernameOrPhone(e.target.value)}
+                placeholder="maestro أو 01010568615"
                 dir="ltr"
                 style={{
                   width: "100%",
-                  height: "44px",
-                  backgroundColor: "#071524",
-                  border: "1px solid #1a3654",
+                  height: "42px",
+                  backgroundColor: "#0b0914",
+                  border: "1px solid #282046",
                   borderRadius: "10px",
-                  padding: "0 40px 0 14px",
+                  padding: "0 38px 0 12px",
                   fontSize: "13.5px",
+                  color: "#f8fafc",
+                  outline: "none",
+                  textAlign: "right",
+                  boxSizing: "border-box",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label
+              style={{
+                display: "block",
+                fontSize: "12px",
+                fontWeight: 800,
+                color: "#cbd5e1",
+                marginBottom: "5px",
+              }}
+            >
+              كلمة المرور
+            </label>
+            <div style={{ position: "relative" }}>
+              <KeyRound size={16} style={{ position: "absolute", right: "12px", top: "13px", color: "#94a3b8" }} />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="123456789"
+                dir="ltr"
+                style={{
+                  width: "100%",
+                  height: "42px",
+                  backgroundColor: "#0b0914",
+                  border: "1px solid #282046",
+                  borderRadius: "10px",
+                  padding: "0 38px 0 12px",
+                  fontSize: "14px",
                   color: "#f8fafc",
                   outline: "none",
                   textAlign: "right",
@@ -204,33 +299,33 @@ export default function LoginPage() {
             <label
               style={{
                 display: "block",
-                fontSize: "12.5px",
+                fontSize: "12px",
                 fontWeight: 800,
                 color: "#cbd5e1",
-                marginBottom: "6px",
+                marginBottom: "5px",
               }}
             >
               كود الأمان السري (PIN)
             </label>
             <div style={{ position: "relative" }}>
-              <Lock size={16} style={{ position: "absolute", right: "14px", top: "14px", color: "#94a3b8" }} />
+              <Lock size={16} style={{ position: "absolute", right: "12px", top: "13px", color: "#94a3b8" }} />
               <input
                 type="password"
                 maxLength={6}
                 value={pin}
                 onChange={(e) => setPin(e.target.value)}
-                placeholder="••••••"
+                placeholder="157230"
                 dir="ltr"
                 style={{
                   width: "100%",
-                  height: "44px",
-                  backgroundColor: "#071524",
-                  border: "1px solid #1a3654",
+                  height: "42px",
+                  backgroundColor: "#0b0914",
+                  border: "1px solid #282046",
                   borderRadius: "10px",
-                  padding: "0 40px 0 14px",
+                  padding: "0 38px 0 12px",
                   fontSize: "18px",
                   letterSpacing: "4px",
-                  color: "#f59e0b",
+                  color: "#ff6b00",
                   outline: "none",
                   textAlign: "center",
                   boxSizing: "border-box",
@@ -248,7 +343,7 @@ export default function LoginPage() {
                 backgroundColor: "rgba(239, 68, 68, 0.15)",
                 border: "1px solid rgba(239, 68, 68, 0.4)",
                 borderRadius: "8px",
-                padding: "10px 12px",
+                padding: "8px 12px",
                 fontSize: "12px",
                 color: "#ef4444",
                 fontWeight: 700,
@@ -264,15 +359,15 @@ export default function LoginPage() {
             type="submit"
             disabled={loading}
             style={{
-              height: "46px",
-              backgroundColor: "#f59e0b",
-              color: "#071524",
+              height: "44px",
+              backgroundColor: "#ff6b00",
+              color: "#ffffff",
               fontWeight: 900,
               fontSize: "14.5px",
               borderRadius: "10px",
               border: "none",
               cursor: loading ? "not-allowed" : "pointer",
-              boxShadow: "0 4px 16px rgba(245, 158, 11, 0.35)",
+              boxShadow: "0 4px 16px rgba(255, 107, 0, 0.4)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -286,87 +381,54 @@ export default function LoginPage() {
                 <span>جارٍ التحقق...</span>
               </>
             ) : (
-              <span>دخول النظام</span>
+              <span>دخول النظام 🚀</span>
             )}
           </button>
         </form>
 
         {/* Quick Staff Presets */}
-        <div style={{ marginTop: "24px", paddingTop: "18px", borderTop: "1px solid #1a3654" }}>
-          <p style={{ margin: "0 0 10px", fontSize: "11px", color: "#94a3b8", textAlign: "center", fontWeight: 700 }}>
+        <div style={{ marginTop: "20px", paddingTop: "14px", borderTop: "1px solid #211a3d" }}>
+          <p style={{ margin: "0 0 8px", fontSize: "11px", color: "#94a3b8", textAlign: "center", fontWeight: 700 }}>
             تسجيل دخول سريع للتجربة والتشغيل:
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "6px" }}>
-            <button
-              onClick={() => handleLogin("01069717413", "202600")}
-              style={{
-                backgroundColor: "#071524",
-                border: "1px solid #1a3654",
-                borderRadius: "8px",
-                padding: "8px 6px",
-                color: "#f59e0b",
-                fontSize: "11px",
-                fontWeight: 800,
-                cursor: "pointer",
-                textAlign: "center",
-              }}
-            >
-              👑 المعلم المايسترو (المالك)
-            </button>
-            <button
-              onClick={() => handleLogin("01000388911", "112233")}
-              style={{
-                backgroundColor: "#071524",
-                border: "1px solid #1a3654",
-                borderRadius: "8px",
-                padding: "8px 6px",
-                color: "#60a5fa",
-                fontSize: "11px",
-                fontWeight: 800,
-                cursor: "pointer",
-                textAlign: "center",
-              }}
-            >
-              👔 مدير التشغيل العام
-            </button>
-            <button
-              onClick={() => handleLogin("01110022334", "101010")}
-              style={{
-                backgroundColor: "#071524",
-                border: "1px solid #1a3654",
-                borderRadius: "8px",
-                padding: "8px 6px",
-                color: "#10b981",
-                fontSize: "11px",
-                fontWeight: 800,
-                cursor: "pointer",
-                textAlign: "center",
-              }}
-            >
-              💻 كاشير صالة فيصل (POS)
-            </button>
-            <button
-              onClick={() => handleLogin("01556677889", "303030")}
-              style={{
-                backgroundColor: "#071524",
-                border: "1px solid #1a3654",
-                borderRadius: "8px",
-                padding: "8px 6px",
-                color: "#38bdf8",
-                fontSize: "11px",
-                fontWeight: 800,
-                cursor: "pointer",
-                textAlign: "center",
-              }}
-            >
-              🛵 كابتن حودة (دليفري)
-            </button>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            {staffPresets.map((preset, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  setUsernameOrPhone(preset.user);
+                  setPassword(preset.pass);
+                  setPin(preset.pin);
+                  handleLogin(preset.user, preset.pass, preset.pin);
+                }}
+                style={{
+                  backgroundColor: "#0b0914",
+                  border: `1px solid ${preset.color}40`,
+                  borderRadius: "8px",
+                  padding: "8px 10px",
+                  color: preset.color,
+                  fontSize: "11.5px",
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  transition: "background-color 0.2s",
+                }}
+              >
+                <span>{preset.label}</span>
+                <span style={{ fontSize: "10px", color: "#94a3b8", direction: "ltr", fontFamily: "monospace" }}>
+                  PIN: {preset.pin}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Footer Attribution */}
-        <div style={{ marginTop: "20px", textAlign: "center", fontSize: "11px", color: "#64748b" }}>
-          تم تطوير النظام بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية
+        <div style={{ marginTop: "18px", textAlign: "center", fontSize: "11px", color: "#64748b" }}>
+          تم تطوير وبرمجة المنظومة بواسطة أوركا للحلول البرمجية والسحابية 🐬
         </div>
       </div>
     </div>

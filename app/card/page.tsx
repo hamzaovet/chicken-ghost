@@ -97,13 +97,13 @@ export default function CardPage() {
               boxShadow: "0 0 25px rgba(245, 158, 11, 0.3)",
             }}
           >
-            🐟
+            👻
           </div>
-          <h1 style={{ fontSize: "28px", fontWeight: 900, color: "#f59e0b", margin: "0 0 6px" }}>
+          <h1 style={{ fontSize: "28px", fontWeight: 900, color: "#ff6b00", margin: "0 0 6px" }}>
             تشيكن جوست - Chicken Ghost
           </h1>
           <p style={{ fontSize: "14px", color: "#94a3b8", fontWeight: 800, margin: 0 }}>
-            ملوك الأسماك المملحة والمدخنة والبطارخ منذ 1990
+            شبح الفرايد تشيكن والبرجر المقرمش • أقوى قرمشة في مصر
           </p>
         </div>
 

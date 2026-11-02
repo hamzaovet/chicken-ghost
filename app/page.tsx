@@ -135,7 +135,7 @@ export default function StorefrontPage() {
   const [customizingProduct, setCustomizingProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<ProductSize | null>(null);
   const [selectedWeightGrams, setSelectedWeightGrams] = useState(500);
-  const [selectedPackageType, setSelectedPackageType] = useState("مخلي بزيت وليمون");
+  const [selectedPackageType, setSelectedPackageType] = useState("تتبيلة أوريجينال مقرمشة (Original)");
   const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
 
   // Hero auto-slide
@@ -219,7 +219,7 @@ export default function StorefrontPage() {
 
     setSelectedSize(parsedSizes.length > 0 ? parsedSizes[0] : null);
     setSelectedWeightGrams(500);
-    setSelectedPackageType("مخلي بزيت وليمون");
+    setSelectedPackageType("تتبيلة أوريجينال مقرمشة (Original)");
     setSelectedExtras([]);
   }
 
@@ -389,9 +389,9 @@ export default function StorefrontPage() {
           }}
         >
           {/* Branch Picker */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <MapPin size={16} color="#ff6b00" />
-            <span style={{ color: "#94a3b8" }}>الفرع الأقرب لك:</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: "1 1 280px", minWidth: 0 }}>
+            <MapPin size={16} color="#ff6b00" style={{ flexShrink: 0 }} />
+            <span style={{ color: "#94a3b8", whiteSpace: "nowrap", flexShrink: 0 }}>الفرع الأقرب لك:</span>
             <select
               value={selectedBranch}
               onChange={e => setSelectedBranch(e.target.value)}
@@ -400,25 +400,26 @@ export default function StorefrontPage() {
                 border: "1px solid #211a3d",
                 borderRadius: "8px",
                 color: "#ff6b00",
-                padding: "4px 10px",
+                padding: "6px 10px",
                 fontWeight: 800,
-                fontSize: "12.5px",
+                fontSize: "12px",
                 outline: "none",
                 cursor: "pointer",
+                flex: 1,
+                minWidth: 0,
               }}
             >
               <option value="فرع حدائق القبة الرئيسي (74 شارع الدويدار)">فرع حدائق القبة الرئيسي (74 شارع الدويدار)</option>
               <option value="فرع الوايلي والعباسية">فرع الوايلي والعباسية</option>
               <option value="فرع الزيتون وسراي القبة">فرع الزيتون وسراي القبة</option>
               <option value="فرع مدينة نصر ومصر الجديدة">فرع مدينة نصر ومصر الجديدة</option>
-              
             </select>
           </div>
 
           {/* Delivery Zone / Speed estimate */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <Bike size={16} color="#10b981" />
-            <span style={{ color: "#94a3b8" }}>منطقة التوصيل:</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: "1 1 280px", minWidth: 0 }}>
+            <Bike size={16} color="#10b981" style={{ flexShrink: 0 }} />
+            <span style={{ color: "#94a3b8", whiteSpace: "nowrap", flexShrink: 0 }}>منطقة التوصيل:</span>
             <select
               value={selectedZone.code}
               onChange={e => {
@@ -430,11 +431,13 @@ export default function StorefrontPage() {
                 border: "1px solid #211a3d",
                 borderRadius: "8px",
                 color: "#10b981",
-                padding: "4px 10px",
+                padding: "6px 10px",
                 fontWeight: 800,
-                fontSize: "12.5px",
+                fontSize: "12px",
                 outline: "none",
                 cursor: "pointer",
+                flex: 1,
+                minWidth: 0,
               }}
             >
               {ALL_DELIVERY_ZONES.map(z => (
@@ -549,7 +552,7 @@ export default function StorefrontPage() {
                         alignItems: "center",
                       }}
                     >
-                      تصفح باقي الأسماك
+                      تصفح منيو الشبح 🍗
                     </a>
                   </div>
                 </div>
@@ -607,7 +610,7 @@ export default function StorefrontPage() {
               <Search size={18} style={{ position: "absolute", right: "14px", top: "12px", color: "#94a3b8" }} />
               <input
                 type="text"
-                placeholder="ابحث عن الفسيخ، الرنجة الهولندي، البطارخ، الملوحة، البوكسات..."
+                placeholder="ابحث عن وجبات الشبح، الفرايد تشيكن، البرجر، الستربس، اللودد فرايز..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 style={{
@@ -689,7 +692,7 @@ export default function StorefrontPage() {
         {loadingProducts ? (
           <div style={{ textAlign: "center", padding: "80px 20px", color: "#94a3b8" }}>
             <Loader2 size={36} className="animate-spin" style={{ margin: "0 auto 16px", color: "#ff6b00" }} />
-            <p style={{ fontSize: "16px", fontWeight: 700 }}>جارٍ تجهيز قائمة ملوك الأسماك من السيرفر...</p>
+            <p style={{ fontSize: "16px", fontWeight: 700 }}>جارٍ تجهيز منيو تشيكن جوست الساخن من السيرفر...</p>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div style={{ textAlign: "center", padding: "80px 20px", color: "#94a3b8" }}>
@@ -778,7 +781,7 @@ export default function StorefrontPage() {
                   {/* Body Content */}
                   <div style={{ padding: "16px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
                     <div style={{ fontSize: "11.5px", color: "#ff6b00", fontWeight: 800 }}>
-                      {p.categoryName || "فسيخ ورنجة"}
+                      {p.categoryName || "فرايد تشيكن وبرجر"}
                     </div>
 
                     <h3 style={{ margin: 0, fontSize: "16px", fontWeight: 900, color: "#f8fafc", lineHeight: 1.3 }}>
@@ -963,13 +966,13 @@ export default function StorefrontPage() {
               {/* Package & Cleaning Options */}
               <div>
                 <label style={{ fontSize: "13px", fontWeight: 800, color: "#ff6b00", marginBottom: "8px", display: "block" }}>
-                  طريقة التجهيز والتنظيف:
+                  درجة القرمشة والبهارات السرية:
                 </label>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                   {[
-                    "مخلي بزيت الذرة وعصير الليمون والفلفل",
-                    "سليم بالجلد متبل ومجهز",
-                    "تغليف فاكيوم محكم لسفر / حفظ بالثلاجة",
+                    "تتبيلة أوريجينال مقرمشة (Original Crispy)",
+                    "تتبيلة سبايسي حار ناري (Spicy Fire Ghost)",
+                    "ميكس نص عادي ونص حار (Half and Half)",
                   ].map(opt => (
                     <label
                       key={opt}
@@ -1095,7 +1098,7 @@ export default function StorefrontPage() {
                 <div style={{ textAlign: "center", padding: "60px 10px", color: "#94a3b8" }}>
                   <ShoppingCart size={48} style={{ margin: "0 auto 12px", opacity: 0.3 }} />
                   <p style={{ margin: 0, fontSize: "15px", fontWeight: 700 }}>سلتك فارغة حالياً</p>
-                  <p style={{ margin: "6px 0 0", fontSize: "12.5px" }}>اختر من أصناف الفسيخ والرنجة والبطارخ لتجربة لا تقاوم</p>
+                  <p style={{ margin: "6px 0 0", fontSize: "12.5px" }}>اختر من وجبات تشيكن جوست، الباكيتات العائلية وسندوتشات البرجر لتجربة لا تقاوم</p>
                 </div>
               ) : (
                 cart.map((item, idx) => (

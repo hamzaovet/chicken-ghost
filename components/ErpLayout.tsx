@@ -202,7 +202,7 @@ export default function ErpLayout({ children, activeItem }: ErpLayoutProps) {
               {
                 id: "menu",
                 href: "/menu-admin",
-                label: "الأسماك وقائمة الأسعار",
+                label: "منيو الوجبات وقائمة الأسعار",
                 icon: UtensilsCrossed,
               },
               {

@@ -219,7 +219,7 @@ export default function CashierPage() {
         total: item.unitPrice * item.qty,
       }));
 
-      const branchName = currentUser?.branch || "فرع فيصل الرئيسي (المطبعة)";
+      const branchName = currentUser?.branch || "فرع حدائق القبة الرئيسي (74 شارع الدويدار)";
 
       const payload = {
         customerName: ticketCustomerName.trim() || (ticketOrderType === "pos" ? "عميل صالة" : "عميل كريم"),
@@ -327,7 +327,7 @@ export default function CashierPage() {
                 <Search size={18} style={{ position: "absolute", right: "12px", top: "11px", color: "#94a3b8" }} />
                 <input
                   type="text"
-                  placeholder="ابحث بالاسم أو كود الميزان PLU (مثال: فسيخ، 00101)..."
+                  placeholder="ابحث باسم الوجبة أو الكود (مثال: وجبة الشبح، برجر)..."
                   value={menuSearchQuery}
                   onChange={e => setMenuSearchQuery(e.target.value)}
                   style={{
@@ -425,7 +425,7 @@ export default function CashierPage() {
               {loading ? (
                 <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "60px", color: "#94a3b8" }}>
                   <Loader2 size={32} className="animate-spin" style={{ margin: "0 auto 12px", color: "#f59e0b" }} />
-                  <p>جارٍ تحميل أصناف الفسيخ والرنجة والأسماك...</p>
+                  <p>جارٍ تحميل وجبات تشيكن جوست وقائمة الطعام...</p>
                 </div>
               ) : filteredProducts.length === 0 ? (
                 <div style={{ gridColumn: "1/-1", textAlign: "center", padding: "60px", color: "#94a3b8" }}>
