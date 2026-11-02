@@ -34,7 +34,9 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Sync Capacitor Android
-        run: npx cap sync android
+        run: |
+          rm -f public/downloads/*.apk
+          npx cap sync android
 
       - name: Make Gradlew Executable
         run: chmod +x ./android/gradlew
