@@ -157,19 +157,20 @@ export default function DownloadAppPage() {
           </p>
 
           {/* Download Action Button */}
-          <button
-            onClick={handleDownload}
-            disabled={downloading}
+          <a
+            href="/api/download/apk"
+            download="chicken-ghost.apk"
             style={{
               backgroundColor: "#ff6b00",
-              color: "#0b0914",
+              color: "#ffffff",
               border: "none",
               borderRadius: "100px",
               padding: "16px 36px",
               fontSize: "16px",
               fontWeight: 900,
-              cursor: downloading ? "not-allowed" : "pointer",
-              boxShadow: "0 6px 20px rgba(245, 158, 11, 0.4)",
+              textDecoration: "none",
+              cursor: "pointer",
+              boxShadow: "0 6px 20px rgba(255, 107, 0, 0.4)",
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
@@ -177,8 +178,8 @@ export default function DownloadAppPage() {
             }}
           >
             <Download size={20} />
-            <span>{downloading ? "جارٍ بدء التحميل الآن..." : "تحميل التطبيق مباشرة (APK)"}</span>
-          </button>
+            <span>تحميل التطبيق مباشرة (APK) 🚀</span>
+          </a>
 
           <div style={{ marginTop: "14px", fontSize: "12px", color: "#64748b" }}>
             حجم الملف: 18 ميجابايت • يدعم جميع هواتف أندرويد (Android 8.0+)
