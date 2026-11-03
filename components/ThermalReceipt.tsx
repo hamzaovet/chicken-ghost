@@ -264,7 +264,7 @@ export function printThermalReceipt(order: PrintableOrder) {
         <div style="font-weight: bold; font-size: 12px;">ألف هنا وشفا يا فندم! 🐟</div>
         <div>ألف هنا وشفا • تشيكن جوست يتمنى لكم وجبة مقرمشة شهية!</div>
         <div style="margin-top: 4px; font-size: 10px; color: #555;">شكراً لاختياركم تشيكن جوست - Chicken Ghost 👻</div>
-        <div style="font-size: 9px; margin-top: 3px; color: #777;">تم إصدار الفاتورة إلكترونياً بواسطة نظام شركة أوركا السحابي</div>
+        <div style="font-size: 9px; margin-top: 3px; color: #777;">تم تطوير وإصدار الفاتورة بواسطة شركة أوركا لتقنية المعلومات — 01018671000</div>
       </div>
     </body>
     </html>

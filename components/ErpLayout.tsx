@@ -322,6 +322,10 @@ export default function ErpLayout({ children, activeItem }: ErpLayoutProps) {
               <LogOut size={14} />
             </button>
           </div>
+
+          <div style={{ fontSize: "10px", color: "#64748b", textAlign: "center", marginTop: "2px" }}>
+            شركة أوركا لتقنية المعلومات — 01018671000
+          </div>
         </div>
       </aside>
 

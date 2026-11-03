@@ -245,7 +245,7 @@ export default function CardPage() {
 
         {/* Footer Attribution */}
         <div style={{ fontSize: "12px", color: "#64748b" }}>
-          تم تطوير النظام بواسطة شركة أوركا للحلول البرمجية والخدمات السحابية 🐬
+          تم تطوير النظام بواسطة شركة أوركا لتقنية المعلومات — 01018671000 🐬
         </div>
       </div>
     </div>

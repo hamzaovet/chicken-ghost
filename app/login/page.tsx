@@ -349,7 +349,7 @@ export default function LoginPage() {
 
         {/* Footer Attribution */}
         <div style={{ marginTop: "22px", textAlign: "center", fontSize: "11px", color: "#64748b" }}>
-          نظام تشيكن جوست السحابي • شركة أوركا للحلول البرمجية 🐬
+          نظام تشيكن جوست السحابي • شركة أوركا لتقنية المعلومات — 01018671000 🐬
         </div>
       </div>
     </div>
